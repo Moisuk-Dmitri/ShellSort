@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <locale>
 #include <typeinfo>
 #include <exception>
 #include "Sort.h"
@@ -12,58 +11,56 @@ enum { IN_EXIT, IN_MANUAL, IN_FILE, IN_RANDOM };
 enum { OUT_EXIT, OUT_MANUAL, OUT_FILE };
 
 int main() {
-	setlocale(LC_ALL, "rus");
-
-	std::vector<int> arr_orig;		// Изначальный массив
-	std::vector<int> arr;		// Отсортированный массив
+	std::vector<int> arr_orig;		// Original array
+	std::vector<int> arr;		// sorted array
 
 	int choice = -1;
 	do {
-		std::cout << "\n1 - Ввод\n"
-			<< "2 - Вывод\n"
-			<< "3 - Тест\n"
-			<< "0 - Выход\n";
+		std::cout << "\n1 - Array input\n"
+			<< "2 - Array output\n"
+			<< "3 - Run test\n"
+			<< "0 - Exit\n";
 		input(choice);
 
 		switch (choice) {
-		case IN: {		// Блок ввода массива
+		case IN: {		// Input array module
 			int choice_in = -1;
 
 			do {
 				try {
-					std::cout << "\n1 - Ввод с клавиатуры\n"
-						<< "2 - Ввод с файла\n"
-						<< "3 - Ввод рандомных чисел\n"
-						<< "0 - Выход\n";
+					std::cout << "\n1 - Enter manually\n"
+						<< "2 - Enter from file\n"
+						<< "3 - Enter random\n"
+						<< "0 - Exit\n";
 					input(choice_in);
 					switch (choice_in) {
-					case IN_MANUAL:		// Ввод с клавиатуры
+					case IN_MANUAL:		// Enter array using keyboard
 						arr.clear();
 						inputArrManual(arr);
 						break;
-					case IN_FILE:		// Ввод с файла
+					case IN_FILE:		// Enter array from file
 						arr.clear();
 						inputArrFile(arr);
 						break;
-					case IN_RANDOM:		// Ввод рандомных чисел
+					case IN_RANDOM:		// Enter random numbers into array
 						arr.clear();
 						inputArrRandom(arr);
 						break;
-					case IN_EXIT:		// Выход с блока ввода
+					case IN_EXIT:		// Exit from input module
 						break;
 					default:
-						std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
+						std::cerr << "\n[INVALID CHOICE]\n";
 						choice_in = -1;
 					}
-					if (choice_in != IN_EXIT && choice_in != -1) {		// Сортировка заполненного массива
+					if (choice_in != IN_EXIT && choice_in != -1) {		// Array sort module
 						arr_orig = arr;
 						if (arr.empty() || arr_orig.empty()) {
-							throw std::invalid_argument("[ПУСТОЙ МАССИВ]\n");
+							throw std::invalid_argument("[EMPTY ARRAY]\n");
 						}
-						std::cout << "Изначальный массив:";
+						std::cout << "Original array:";
 						outputArrConsole(arr_orig);
 						Sort::ShellSort(arr);
-						std::cout << "Отсортированный массив:";
+						std::cout << "Sorted array:";
 						outputArrConsole(arr);
 					}
 				}
@@ -72,7 +69,7 @@ int main() {
 					choice_in = -1;
 				}
 				catch (...) {
-					std::cerr << "[ОШИБКА ВВОДА]\n";
+					std::cerr << "[ENTER ERROR]\n";
 					choice_in = -1;
 				}
 			} while (choice_in != IN_EXIT &&
@@ -81,27 +78,27 @@ int main() {
 				choice_in != IN_RANDOM);
 		}
 			   break;
-		case OUT: {		// Блок вывода массива
+		case OUT: {		// Output array module
 			int choice_out = 0;
 
 			do {
-				std::cout << "\n1 - Вывод в консоль\n"
-					<< "2 - Вывод в файл\n"
-					<< "0 - Выход\n";
+				std::cout << "\n1 - Print into console\n"
+					<< "2 - Print into file\n"
+					<< "0 - Exit\n";
 				input(choice_out);
 
 				try {
 					switch (choice_out) {
-					case OUT_MANUAL:		// Вывод на консоль
+					case OUT_MANUAL:		// Console array output
 						outputArrConsole(arr, arr_orig);
 						break;
-					case OUT_FILE:		// Вывод в файл
+					case OUT_FILE:		// File array output
 						outputArrFile(arr, arr_orig);
 						break;
-					case OUT_EXIT:		// Выход из блока вывода
+					case OUT_EXIT:		// Exit from output module
 						break;
 					default:
-						std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
+						std::cerr << "\n[INVALID CHOICE]\n";
 						choice_out = -1;
 					}
 				}
@@ -110,13 +107,13 @@ int main() {
 					choice_out = -1;
 				}
 				catch (...) {
-					std::cerr << "[ОШИБКА ВЫВОДА]\n";
+					std::cerr << "[OUTPUT ERROR]\n";
 					choice_out = -1;
 				}
 			} while (choice_out != OUT_EXIT);
 		}
 				break;
-		case RUN_TEST:		// Блок тестов
+		case RUN_TEST:		// Test module
 			try {
 				runTest();
 			}
@@ -124,13 +121,13 @@ int main() {
 				std::cerr << e.what();
 			}
 			catch (...) {
-				std::cerr << "[ОШИБКА ТЕСТИРОВАНИЯ]\n";
+				std::cerr << "[TEST ERROR]\n";
 			}
 			break;
-		case EXIT:		// Выход из программы
+		case EXIT:		// Exit from program
 			break;
 		default:
-			std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
+			std::cerr << "\n[INVALID CHOICE]\n";
 			choice = -1;
 			break;
 		}

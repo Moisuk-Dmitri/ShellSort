@@ -2,7 +2,7 @@
 
 void outputArrConsole(std::vector<int> const& arr){
 	if (arr.empty()) {
-		throw std::invalid_argument("[œ”—“Œ… Ã¿——»¬]\n");
+		throw std::invalid_argument("[EMPTY ARRAY]\n");
 	}
 
 	std::cout << "\n";
@@ -14,18 +14,18 @@ void outputArrConsole(std::vector<int> const& arr){
 
 void outputArrConsole(std::vector<int> const& arr, std::vector<int> const& arr_orig) {		//
 	if (arr_orig.empty()) {
-		throw std::invalid_argument("[œ”—“Œ… Ã¿——»¬]\n");
+		throw std::invalid_argument("[EMPTY ARRAY]\n");
 	}
 	if (arr.empty()) {
-		throw std::invalid_argument("[œ”—“Œ… Ã¿——»¬]\n");
+		throw std::invalid_argument("[EMPTY ARRAY]\n");
 	}
 
 	std::cout << "\n";
-	std::cout << "»ÁÌ‡˜‡Î¸Ì˚È Ï‡ÒÒË‚:\n";
+	std::cout << "Original array:\n";
 	for (int i = 0; i < arr_orig.size(); i++) {
 		std::cout << arr_orig[i] << " ";
 	}
-	std::cout << "\nŒÚÒÓÚËÓ‚‡ÌÌ˚È Ï‡ÒÒË‚:\n";
+	std::cout << "\nSorted array:\n";
 	for (int i = 0; i < arr.size(); i++) {
 		std::cout << arr[i] << " ";
 	}
@@ -34,14 +34,14 @@ void outputArrConsole(std::vector<int> const& arr, std::vector<int> const& arr_o
 
 void outputArrFile(std::vector<int> const& arr) {
 	if (arr.empty()) {
-		throw std::invalid_argument("[œ”—“Œ… Ã¿——»¬]\n");
+		throw std::invalid_argument("[EMPTY ARRAY]\n");
 	}
 
 	std::cout << "\n";
 	std::ofstream file;
 	std::string name;
 	do {
-		std::cout << "¬‚Â‰ËÚÂ ËÏˇ Ù‡ÈÎ‡:\n";
+		std::cout << "Enter file name:\n";
 		std::cin >> name;
 		if (std::filesystem::is_regular_file(name) &&
 			name != "test_orig.txt" &&
@@ -49,7 +49,7 @@ void outputArrFile(std::vector<int> const& arr) {
 			file.open(name);
 		}
 		else {
-			std::cerr << "\n[Õ≈ƒŒœ”—“»ÃŒ≈ »Ãﬂ ‘¿…À¿]\n";
+			std::cerr << "\n[INVALID FILE NAME]\n";
 		}
 	} while (!std::filesystem::is_regular_file(name) ||
 		name == "test_orig.txt" ||
@@ -66,14 +66,14 @@ void outputArrFile(std::vector<int> const& arr) {
 
 void outputArrFile(std::vector<int> const& arr, std::vector<int> const& arr_orig) {
 	if (arr.empty()) {
-		throw std::invalid_argument("[œ”—“Œ… Ã¿——»¬]\n");
+		throw std::invalid_argument("[EMPTY ARRAY]\n");
 	}
 
 	std::cout << "\n";
 	std::ofstream file;
 	std::string name;
 	do {
-		std::cout << "¬‚Â‰ËÚÂ ËÏˇ Ù‡ÈÎ‡:\n";
+		std::cout << "Enter file name:\n";
 		std::cin >> name;
 		if (std::filesystem::is_regular_file(name) &&
 			name != "test_orig.txt" &&
@@ -81,17 +81,17 @@ void outputArrFile(std::vector<int> const& arr, std::vector<int> const& arr_orig
 			file.open(name);
 		}
 		else {
-			std::cerr << "\n[Õ≈ƒŒœ”—“»ÃŒ≈ »Ãﬂ ‘¿…À¿]\n";
+			std::cerr << "\n[INVALID FILE NAME]\n";
 		}
 	} while (!std::filesystem::is_regular_file(name) ||
 		name == "test_orig.txt" ||
 		name == "test_sorted.txt");
 
-	file << "»ÁÌ‡˜‡Î¸Ì˚È Ï‡ÒÒË‚:\n";
+	file << "Original array:\n";
 	for (int i = 0; i < arr.size(); i++) {
 		file << arr_orig[i] << " ";
 	}
-	file << "\nŒÚÒÓÚËÓ‚‡ÌÌ˚È Ï‡ÒÒË‚:\n";
+	file << "\nSorted array:\n";
 	for (int i = 0; i < arr.size(); i++) {
 		file << arr[i] << " ";
 	}

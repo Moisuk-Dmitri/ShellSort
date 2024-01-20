@@ -2,7 +2,7 @@
 #include "Test.h"
 #include "Sort.h"
 
-void runTest()		// Тест по двум подготовленным в файлах массивам
+void runTest()		// Test with two prepared arrays from files
 {
 	std::vector<int> arr_orig;
 	inputArrFile(arr_orig, "test_orig.txt");

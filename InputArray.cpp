@@ -4,16 +4,16 @@ void inputArrManual(std::vector<int>& arr){
 	std::cout << "\n";
 	int size = 0;
 	do {
-		std::cout << "Введите размер массива:\n";
+		std::cout << "Enter array size:\n";
 		input(size);
 		if (size < 1) {
-			std::cerr << "[НЕКОРРЕКТНЫЙ РАЗМЕР МАССИВА]\n";
+			std::cerr << "[Invalid array size]\n";
 		}
 	} while (size < 1);
 
 	int val;
 	for (int i = 0; i < size; i++) {
-		std::cout << "Массив[" << i + 1 << "] = ";
+		std::cout << "Array[" << i + 1 << "] = ";
 		input(val);
 		arr.push_back(val);
 	}
@@ -26,7 +26,7 @@ void inputArrFile(std::vector<int>& arr) {
 
 	std::string name;
 	do {
-		std::cout << "Введите имя файла:\n";
+		std::cout << "Enter file name:\n";
 		std::cin >> name;
 		if ((std::filesystem::is_regular_file(name))) {
 			file.open(name);
@@ -48,7 +48,7 @@ void inputArrFile(std::vector<int>& arr, std::string name) {
 	std::ifstream file;
 
 	if ((!std::filesystem::is_regular_file(name))) {
-		throw std::invalid_argument("[НЕДОПУСТИМОЕ ИМЯ ФАЙЛА]\n");
+		throw std::invalid_argument("[Invalid file name]\n");
 	}
 	file.open(name);
 	int val = 0;
@@ -65,10 +65,10 @@ void inputArrRandom(std::vector<int>& arr){
 	std::cout << "\n";
 	int size = 0;
 	do {
-		std::cout << "Введите размер массива:\n";
+		std::cout << "Enter array size:\n";
 		input(size);
 		if (size < 1) {
-			std::cerr << "[НЕКОРРЕКТНЫЙ РАЗМЕР МАССИВА]\n";
+			std::cerr << "[Invalid array size]\n";
 		}
 	} while (size < 1);
 
@@ -79,10 +79,10 @@ void inputArrRandom(std::vector<int>& arr){
 }
 
 template <typename T>
-void input(T& obj) {		// Проверка корректности входного значения
+void input(T& obj) {		// Value correctness check 
 	while (!(std::cin >> obj) || (std::cin.peek() != '\n')) {
 		std::cin.clear();
 		while (std::cin.get() != '\n');
-		std::cout << "Введите значение повторно: ";
+		std::cout << "Enter value once more: ";
 	}
 }
