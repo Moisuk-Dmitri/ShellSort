@@ -79,7 +79,7 @@ void inputArrRandom(std::vector<int>& arr){
 }
 
 template <typename T>
-void input(T& obj) { //
+void input(T& obj) {		// Проверка корректности входного значения
 	while (!(std::cin >> obj) || (std::cin.peek() != '\n')) {
 		std::cin.clear();
 		while (std::cin.get() != '\n');

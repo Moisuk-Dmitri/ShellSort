@@ -12,7 +12,7 @@ void outputArrConsole(std::vector<int> const& arr){
 	std::cout << "\n";
 }
 
-void outputArrConsole(std::vector<int> const& arr, std::vector<int> const& arr_orig) {
+void outputArrConsole(std::vector<int> const& arr, std::vector<int> const& arr_orig) {		//
 	if (arr_orig.empty()) {
 		throw std::invalid_argument("[осярни люяяхб]\n");
 	}

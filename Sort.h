@@ -1,4 +1,4 @@
-#ifndef SORT //
+#ifndef SORT
 #define SORT
 
 #include <vector>

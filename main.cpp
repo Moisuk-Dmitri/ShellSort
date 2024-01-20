@@ -14,8 +14,8 @@ enum { OUT_EXIT, OUT_MANUAL, OUT_FILE };
 int main() {
 	setlocale(LC_ALL, "rus");
 
-	std::vector<int> arr_orig;
-	std::vector<int> arr;
+	std::vector<int> arr_orig;		// Изначальный массив
+	std::vector<int> arr;		// Отсортированный массив
 
 	int choice = -1;
 	do {
@@ -26,7 +26,7 @@ int main() {
 		input(choice);
 
 		switch (choice) {
-		case IN: { //
+		case IN: {		// Блок ввода массива
 			int choice_in = -1;
 
 			do {
@@ -37,25 +37,25 @@ int main() {
 						<< "0 - Выход\n";
 					input(choice_in);
 					switch (choice_in) {
-					case IN_MANUAL: //
+					case IN_MANUAL:		// Ввод с клавиатуры
 						arr.clear();
 						inputArrManual(arr);
 						break;
-					case IN_FILE: //
+					case IN_FILE:		// Ввод с файла
 						arr.clear();
 						inputArrFile(arr);
 						break;
-					case IN_RANDOM: //
+					case IN_RANDOM:		// Ввод рандомных чисел
 						arr.clear();
 						inputArrRandom(arr);
 						break;
-					case IN_EXIT:
+					case IN_EXIT:		// Выход с блока ввода
 						break;
-					default: //
+					default:
 						std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
 						choice_in = -1;
 					}
-					if (choice_in != IN_EXIT && choice_in != -1) {
+					if (choice_in != IN_EXIT && choice_in != -1) {		// Сортировка заполненного массива
 						arr_orig = arr;
 						if (arr.empty() || arr_orig.empty()) {
 							throw std::invalid_argument("[ПУСТОЙ МАССИВ]\n");
@@ -81,7 +81,7 @@ int main() {
 				choice_in != IN_RANDOM);
 		}
 			   break;
-		case OUT: {//
+		case OUT: {		// Блок вывода массива
 			int choice_out = 0;
 
 			do {
@@ -92,15 +92,15 @@ int main() {
 
 				try {
 					switch (choice_out) {
-					case OUT_MANUAL: //
+					case OUT_MANUAL:		// Вывод на консоль
 						outputArrConsole(arr, arr_orig);
 						break;
-					case OUT_FILE: //
+					case OUT_FILE:		// Вывод в файл
 						outputArrFile(arr, arr_orig);
 						break;
-					case OUT_EXIT: //
+					case OUT_EXIT:		// Выход из блока вывода
 						break;
-					default: //
+					default:
 						std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
 						choice_out = -1;
 					}
@@ -116,7 +116,7 @@ int main() {
 			} while (choice_out != OUT_EXIT);
 		}
 				break;
-		case RUN_TEST: //
+		case RUN_TEST:		// Блок тестов
 			try {
 				runTest();
 			}
@@ -127,12 +127,12 @@ int main() {
 				std::cerr << "[ОШИБКА ТЕСТИРОВАНИЯ]\n";
 			}
 			break;
-		case EXIT: //
+		case EXIT:		// Выход из программы
 			break;
 		default:
 			std::cerr << "\n[НЕДОПУСТИМЫЙ ВЫБОР]\n";
 			choice = -1;
-			break;//
+			break;
 		}
 	} while (choice != EXIT);
 

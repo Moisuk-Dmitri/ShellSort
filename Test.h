@@ -1,4 +1,4 @@
-#ifndef TEST //
+#ifndef TEST
 #define TEST
 
 #include <vector>
