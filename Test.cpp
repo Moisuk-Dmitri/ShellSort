@@ -12,11 +12,11 @@ void runTest()		// Test with two prepared arrays from files
 
 	Sort::ShellSort(arr_orig);
 	if (arr_orig == arr_sorted) {
-		std::cout << "[реяр опнидем]\n";
+		std::cout << "[TEST SUCCESSFUL]\n";
 		return;
 	}
 	else {
-		std::cout << "[реяр ме опнидем]\n";
+		std::cout << "[TEST FAILED]\n";
 		return;
 	}
 }
