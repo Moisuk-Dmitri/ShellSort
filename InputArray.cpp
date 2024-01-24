@@ -7,7 +7,7 @@ void inputArrManual(std::vector<int>& arr){
 		std::cout << "Enter array size:\n";
 		input(size);
 		if (size < 1) {
-			std::cerr << "[Invalid array size]\n";
+			std::cerr << "[INVALID ARRAY SIZE]\n";
 		}
 	} while (size < 1);
 
@@ -30,8 +30,15 @@ void inputArrFile(std::vector<int>& arr) {
 		std::cin >> name;
 		if ((std::filesystem::is_regular_file(name))) {
 			file.open(name);
+			if (!file.is_open()) {
+				throw std::invalid_argument("[FILE CANT BE OPENED]\n");
+			}
+			break;
 		}
-	} while (!std::filesystem::is_regular_file(name));
+		else {
+			throw std::invalid_argument("[INVALID FILE NAME]\n");
+		}
+	} while (true);
 
 	int val = 0;
 	while (file >> val) {
@@ -48,9 +55,12 @@ void inputArrFile(std::vector<int>& arr, std::string name) {
 	std::ifstream file;
 
 	if ((!std::filesystem::is_regular_file(name))) {
-		throw std::invalid_argument("[Invalid file name]\n");
+		throw std::invalid_argument("[INVALID FILE NAME]\n");
 	}
 	file.open(name);
+	if (!file.is_open()) {
+		throw std::invalid_argument("[FILE CANT BE OPENED]\n");
+	}
 	int val = 0;
 	while (file >> val) {
 		arr.push_back(val);

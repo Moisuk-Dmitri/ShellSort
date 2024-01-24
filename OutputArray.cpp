@@ -44,16 +44,20 @@ void outputArrFile(std::vector<int> const& arr) {
 		std::cout << "Enter file name:\n";
 		std::cin >> name;
 		if (std::filesystem::is_regular_file(name) &&
-			name != "test_orig.txt" &&
-			name != "test_sorted.txt") {
+			name != "test_sorted.txt" &&
+			name != "test_orig_1.txt" &&
+			name != "test_orig_2.txt" &&
+			name != "test_orig_3.txt") {
 			file.open(name);
+			if (!file.is_open()) {
+				throw std::invalid_argument("[FILE CANT BE OPENED]\n");
+			}
+			break;
 		}
 		else {
 			std::cerr << "\n[INVALID FILE NAME]\n";
 		}
-	} while (!std::filesystem::is_regular_file(name) ||
-		name == "test_orig.txt" ||
-		name == "test_sorted.txt");
+	} while (true);
 
 	for (int i = 0; i < arr.size(); i++) {
 		file << arr[i] << " ";
@@ -76,16 +80,20 @@ void outputArrFile(std::vector<int> const& arr, std::vector<int> const& arr_orig
 		std::cout << "Enter file name:\n";
 		std::cin >> name;
 		if (std::filesystem::is_regular_file(name) &&
-			name != "test_orig.txt" &&
-			name != "test_sorted.txt") {
+			name != "test_sorted.txt" &&
+			name != "test_orig_1.txt" &&
+			name != "test_orig_2.txt" &&
+			name != "test_orig_3.txt") {
 			file.open(name);
+			if (!file.is_open()) {
+				throw std::invalid_argument("[FILE CANT BE OPENED]\n");
+			}
+			break;
 		}
 		else {
 			std::cerr << "\n[INVALID FILE NAME]\n";
 		}
-	} while (!std::filesystem::is_regular_file(name) ||
-		name == "test_orig.txt" ||
-		name == "test_sorted.txt");
+	} while (true);
 
 	file << "Original array:\n";
 	for (int i = 0; i < arr.size(); i++) {

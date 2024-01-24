@@ -16,7 +16,7 @@ int main() {
 
 	int choice = -1;
 	do {
-		std::cout << "\n1 - Array input\n"
+		std::cout << "1 - Array input\n"
 			<< "2 - Array output\n"
 			<< "3 - Run test\n"
 			<< "0 - Exit\n";
@@ -131,6 +131,7 @@ int main() {
 			choice = -1;
 			break;
 		}
+		std::cout << "\n";
 	} while (choice != EXIT);
 
 	return 1;
