@@ -66,6 +66,8 @@ void outputArrFile(std::vector<int> const& arr) {
 	if (file.is_open()) {
 		file.close();
 	}
+
+	std::cout << "[FILE OUTPUT SUCCESSFUL]\n";
 }
 
 void outputArrFile(std::vector<int> const& arr, std::vector<int> const& arr_orig) {
@@ -107,4 +109,6 @@ void outputArrFile(std::vector<int> const& arr, std::vector<int> const& arr_orig
 	if (file.is_open()) {
 		file.close();
 	}
+
+	std::cout << "[FILE OUTPUT SUCCESSFUL]\n";
 }
